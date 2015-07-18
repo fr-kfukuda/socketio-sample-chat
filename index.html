@@ -14,6 +14,7 @@
     </style>
   </head>
   <body>
+    <div id="count"></div>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -30,6 +31,9 @@
   });
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
+  });
+  socket.on('user count', function(msg){
+    $('#count').text(msg);
   });
 </script>
 </html>
