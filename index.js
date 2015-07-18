@@ -7,8 +7,13 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+  socket.emit('chat message', 'Welcome to chat room. Have fun here.');
+  socket.broadcast.emit('chat message', 'A user newly joined.');
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
+  });
+  socket.on('disconnect', function(){
+    io.emit('chat message', 'A user disconneted.');
   });
 });
 
